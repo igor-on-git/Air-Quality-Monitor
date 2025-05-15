@@ -2,13 +2,12 @@ import smtplib
 from email.mime.text import MIMEText
 from email_credentials import EMAIL_SENDER, EMAIL_PASSWORD, EMAIL_RECEIVER
 
-def send_email(body):
+def send_email(subject, body):
         # Email Configuration
         SMTP_SERVER = "smtp.gmail.com"  # For Gmail (use different SMTP for other providers)
         SMTP_PORT = 587  # TLS port
 
         # Prepare the email message
-        subject = "AQI Notification"
         msg = MIMEText(body)
         msg["Subject"] = subject
         msg["From"] = EMAIL_SENDER
