@@ -5,7 +5,7 @@ from handle_log import *
 
 WEB_ERROR_COUNT_THRESHOLD = 6  # number of consecutive errors
 # thresholds
-thresholds = {'NO': 7, 'NOX': 30, 'NO2': 25, 'O3': 150, 'PM2.5': 50, 'Benzene': 15}
+thresholds = {'NO': 7, 'NOX': 30, 'NO2': 30, 'O3': 150, 'PM2.5': 50, 'Benzene': 15}
 
 # Load previous state
 state = load_state()
@@ -26,11 +26,13 @@ try:
     if data != {}:
 
         web_error_count = 0
+        code_error_count = 0
         body, email_report = analyze_data(data, thresholds)
 
     else:
 
         email_report = 0
+        code_error_count = 0
         body = ""
         web_error_count += 1
         print("No <pre> tag found. Could not parse JSON.")
